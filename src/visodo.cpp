@@ -38,7 +38,10 @@ double getAbsoluteScale(int frame_id, int sequence_id, double z_cal)	{
   
   string line;
   int i = 0;
-  ifstream myfile ("/home/avisingh/Datasets/KITTI_VO/00.txt");
+  //Kitti
+ // ifstream myfile ("/home/shivani/Documents/KittiDataset/poses/00.txt");
+  //Mydataset
+  ifstream myfile ("/home/shivani/Documents/mydataset/Testdataset8/poses/s8.txt");
   double x =0, y=0, z = 0;
   double x_prev, y_prev, z_prev;
   if (myfile.is_open())
@@ -82,8 +85,12 @@ int main( int argc, char** argv )	{
   double scale = 1.00;
   char filename1[200];
   char filename2[200];
-  sprintf(filename1, "/home/avisingh/Datasets/KITTI_VO/00/image_2/%06d.png", 0);
-  sprintf(filename2, "/home/avisingh/Datasets/KITTI_VO/00/image_2/%06d.png", 1);
+  //Kitti
+  sprintf(filename1, "/home/shivani/Documents/KittiDataset/image_0/%06d.png", 0);
+  sprintf(filename2, "/home/shivani/Documents/KittiDataset/image_0/%06d.png", 1);
+  //Kitti
+  sprintf(filename1, "//home/shivani/Documents/mydataset/Testdataset8/output/%d.png", 1);
+  sprintf(filename2, "/home/shivani/Documents/mydataset/Testdataset8/output/%d.png", 2);
 
   char text[100];
   int fontFace = FONT_HERSHEY_PLAIN;
@@ -111,8 +118,12 @@ int main( int argc, char** argv )	{
 
   //TODO: add a fucntion to load these values directly from KITTI's calib files
   // WARNING: different sequences in the KITTI VO dataset have different intrinsic/extrinsic parameters
-  double focal = 718.8560;
-  cv::Point2d pp(607.1928, 185.2157);
+  //Kitti
+  //double focal = 718.8560;
+  //cv::Point2d pp(607.1928, 185.2157);
+  //MyDataset
+  double focal = 286.8511; //new focal intelrealsense t265
+  cv::Point2d pp(419.4670, 386.9750);
   //recovering the pose and the essential matrix
   Mat E, R, t, mask;
   E = findEssentialMat(points2, points1, focal, pp, RANSAC, 0.999, 1.0, mask);
@@ -136,7 +147,10 @@ int main( int argc, char** argv )	{
   Mat traj = Mat::zeros(600, 600, CV_8UC3);
 
   for(int numFrame=2; numFrame < MAX_FRAME; numFrame++)	{
-  	sprintf(filename, "/home/avisingh/Datasets/KITTI_VO/00/image_2/%06d.png", numFrame);
+	 //Kitti
+  	//sprintf(filename, "/home/avisingh/Datasets/KITTI_VO/00/image_2/%06d.png", numFrame);
+  	//MyDataset
+ 	sprintf(filename, "/home/shivani/Documents/mydataset/Testdataset8/output/%d.png", numFrame);
     //cout << numFrame << endl;
   	Mat currImage_c = imread(filename);
   	cvtColor(currImage_c, currImage, COLOR_BGR2GRAY);
