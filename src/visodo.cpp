@@ -15,7 +15,7 @@ char *IMAGES = "/home/raghav/Documents/Dataset/00/image_2/";
 char *POSES = "/home/raghav/Documents/My_Dataset/Testdataset8/poses/R0.txt";
 char *IMAGES = "/home/raghav/Documents/My_Dataset/Testdataset8/output/";
 #endif
-
+//raghav
 double getAbsoluteScale(int frame_id, int sequence_id, double z_cal) {
 
 	string line;
